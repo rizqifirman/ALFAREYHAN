@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Des 2025 pada 17.52
+-- Waktu pembuatan: 23 Des 2025 pada 19.16
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -73,7 +73,8 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (25, '2025-12-16-134259', 'App\\Database\\Migrations\\User', 'default', 'App', 1766283608, 1),
 (26, '2025-12-17-182525', 'App\\Database\\Migrations\\Products', 'default', 'App', 1766283608, 1),
 (27, '2025-12-19-133012', 'App\\Database\\Migrations\\Materials', 'default', 'App', 1766283608, 1),
-(28, '2025-12-21-023145', 'App\\Database\\Migrations\\Workers', 'default', 'App', 1766284512, 2);
+(28, '2025-12-21-023145', 'App\\Database\\Migrations\\Workers', 'default', 'App', 1766284512, 2),
+(29, '2025-12-23-171649', 'App\\Database\\Migrations\\LaborCosts', 'default', 'App', 1766510350, 3);
 
 -- --------------------------------------------------------
 
@@ -206,7 +207,7 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `products`
