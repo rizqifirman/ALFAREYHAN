@@ -102,6 +102,11 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('ongkos') ?>" class="nav-link <?= (uri_string() == 'ongkos') ? 'active' : '' ?>">
+                            <i class="nav-icon bi bi-cash-coin"></i> <p>Ongkos Tukang</p>
+                        </a>
+                    </li>
                         <li class="nav-item">
                             <a href="<?= base_url('materials') ?>" class="nav-link <?= (str_contains(uri_string(), 'materials')) ? 'active' : '' ?>">
                                 <i class="nav-icon bi bi-circle"></i>

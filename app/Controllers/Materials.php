@@ -8,7 +8,7 @@ use App\Models\MaterialModel;
 class Materials extends BaseController
 {
     // 1. TAMPILKAN DATA
-    public function index()
+        public function index()
     {
         $model = new MaterialModel();
         
@@ -17,12 +17,16 @@ class Materials extends BaseController
 
         if ($keyword) {
             $data_material = $model->like('nama_material', $keyword)
-                                   ->orLike('kode_material', $keyword)
-                                   ->orLike('jenis', $keyword)
-                                   ->paginate($perPage, 'materials');
+                                 ->orLike('kode_material', $keyword)
+                                 ->orLike('warna', $keyword) // Pastikan kolom ini ada
+                                 // HAPUS BARIS DI BAWAH INI JIKA ADA:
+                                 // ->orLike('jenis', $keyword) 
+                                 ->paginate($perPage, 'materials');
         } else {
             $data_material = $model->paginate($perPage, 'materials');
         }
+
+        // ... kode sisanya biarkan saja ...
 
         $data = [
             'title'     => 'Data Material',
