@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Des 2025 pada 05.10
+-- Waktu pembuatan: 27 Des 2025 pada 18.22
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -46,8 +46,6 @@ CREATE TABLE `garapans` (
 --
 
 INSERT INTO `garapans` (`id`, `no_faktur`, `worker_id`, `tanggal_spk`, `tanggal_selesai`, `status`, `total_biaya`, `bonus`, `potongan`, `created_at`, `updated_at`) VALUES
-(1, 'GP-251226-676', 2, '2025-12-26', '2025-12-26 19:03:53', 'Batal', 0.00, 0.00, 0.00, '2025-12-26 16:58:38', '2025-12-26 19:03:53'),
-(2, 'GP-251226-766', 2, '2025-12-26', '2025-12-26 19:03:18', 'Batal', 0.00, 0.00, 0.00, '2025-12-26 17:01:46', '2025-12-26 19:03:18'),
 (3, 'GP-251226-501', 1, '2025-12-28', '2025-12-26 19:02:39', 'Revisi', 180000.00, 0.00, 0.00, '2025-12-26 17:08:51', '2025-12-26 19:02:39'),
 (4, 'GP-251226-561', 1, '2025-12-26', '2025-12-26 19:05:03', 'Revisi', 380.00, 0.00, 0.00, '2025-12-26 19:04:34', '2025-12-26 19:05:03'),
 (5, 'GP-251226-419', 1, '2025-12-26', '2025-12-26 19:10:13', 'Revisi', 2380000.00, 0.00, 0.00, '2025-12-26 19:09:52', '2025-12-26 19:10:13'),
@@ -79,7 +77,6 @@ CREATE TABLE `garapan_materials` (
 --
 
 INSERT INTO `garapan_materials` (`id`, `garapan_id`, `material_id`, `qty`) VALUES
-(1, 1, 1, 20),
 (2, 3, 1, 10),
 (3, 4, 1, 1),
 (4, 5, 2, 1),
@@ -250,7 +247,8 @@ CREATE TABLE `users` (
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nama_lengkap` varchar(100) NOT NULL,
-  `role` enum('owner','produksi','kasir','accounting') NOT NULL DEFAULT 'kasir',
+  `role` varchar(50) NOT NULL DEFAULT 'kasir',
+  `status` enum('Aktif','Non-Aktif') DEFAULT 'Aktif',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -259,11 +257,11 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `nama_lengkap`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'owner', '$2y$10$THb51t9uWv/7KgTn64qvU.uBBUaqQm0lRKQyy/Lx8yZcDY4TxTmda', 'Bapak Owner', 'owner', '2025-12-21 15:03:00', '2025-12-21 15:03:00'),
-(2, 'produksi', '$2y$10$f3ViYm/qDlUTSOqNqfd2pupNP2CVDUOztXjHd8FeIf17g07qAQaWC', 'Staff Produksi', 'produksi', '2025-12-21 15:03:00', '2025-12-21 15:03:00'),
-(3, 'kasir', '$2y$10$DP4NoQbSBA7gz5TBe/KYfOmrbVvAT3rJ2W7PLzyrXDSJNmnsqfRPC', 'Mba Kasir', 'kasir', '2025-12-21 15:03:01', '2025-12-21 15:03:01'),
-(4, 'accounting', '$2y$10$2Pp5XW8RRGK4KnX5a0HCEu5jTdpmZ7CnW4e2LS3Ej8hLNTemmf1A.', 'Staff Akunting', 'accounting', '2025-12-21 15:03:01', '2025-12-21 15:03:01');
+INSERT INTO `users` (`id`, `username`, `password`, `nama_lengkap`, `role`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'owner', '$2y$10$THb51t9uWv/7KgTn64qvU.uBBUaqQm0lRKQyy/Lx8yZcDY4TxTmda', 'Bapak Owner', 'owner', 'Aktif', '2025-12-21 15:03:00', '2025-12-21 15:03:00'),
+(2, 'produksi', '$2y$10$f3ViYm/qDlUTSOqNqfd2pupNP2CVDUOztXjHd8FeIf17g07qAQaWC', 'Admin Produksi', 'Admin', 'Aktif', '2025-12-21 15:03:00', '2025-12-21 15:03:00'),
+(3, 'kasir', '$2y$10$DP4NoQbSBA7gz5TBe/KYfOmrbVvAT3rJ2W7PLzyrXDSJNmnsqfRPC', 'Mba Kasir', 'Kasir', 'Aktif', '2025-12-21 15:03:01', '2025-12-21 15:03:01'),
+(4, 'accounting', '$2y$10$2Pp5XW8RRGK4KnX5a0HCEu5jTdpmZ7CnW4e2LS3Ej8hLNTemmf1A.', 'Staff Akunting', 'Admin', 'Aktif', '2025-12-21 15:03:01', '2025-12-21 15:03:01');
 
 -- --------------------------------------------------------
 
