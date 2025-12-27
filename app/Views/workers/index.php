@@ -2,18 +2,6 @@
 
 <?= $this->section('content') ?>
 
-<style>
-    @media print {
-        body * { visibility: hidden; }
-        .table-responsive, .table-responsive * { visibility: visible; }
-        .table-responsive { position: absolute; left: 0; top: 0; width: 100%; }
-        /* Sembunyikan kolom Aksi saat print */
-        th:last-child, td:last-child { display: none !important; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid black !important; padding: 5px; color: black !important; }
-    }
-</style>
-
 <div class="content-header">
     <div class="container-fluid">
         <h1 class="m-0">DATA TUKANG</h1>
@@ -49,7 +37,9 @@
                         <div class="btn-group">
                             <a href="<?= base_url('workers/export/csv') ?>" target="_blank" class="btn btn-secondary btn-sm"><i class="bi bi-filetype-csv"></i> CSV</a>
                             <a href="<?= base_url('workers/export/excel') ?>" target="_blank" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-excel"></i> Excel</a>
-                            <button type="button" onclick="window.print()" class="btn btn-secondary btn-sm"><i class="bi bi-printer"></i> Print</button>
+                        <a href="<?= base_url('workers/print') ?>" target="_blank" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-printer"></i> Print
+                        </a>
                         </div>
                     </div>
 

@@ -1,48 +1,6 @@
 <?= $this->extend('layout/main') ?>
 
-<?= $this->section('content') ?>
-
-<style>
-    /* CSS PREVIEW GAMBAR */
-    .img-preview { cursor: pointer; transition: transform 0.2s; }
-    .img-preview:hover { transform: scale(1.1); }
-
-    /* CSS PRINT (SOLUSI FIX BLANK PAGE) */
-    @media print {
-        /* 1. Sembunyikan SEMUA elemen di body */
-        body * {
-            visibility: hidden;
-        }
-        
-        /* 2. Munculkan HANYA Container Tabel */
-        .table-responsive, .table-responsive * {
-            visibility: visible;
-        }
-
-        /* 3. Posisikan Tabel di Pojok Kiri Atas Kertas */
-        .table-responsive {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            border: none;
-        }
-
-        /* 4. Sembunyikan kolom yang tidak perlu di cetak (Gambar & Aksi) */
-        /* nth-child(2) adalah kolom gambar, last-child adalah kolom aksi */
-        table th:nth-child(2), table td:nth-child(2),
-        table th:last-child, table td:last-child {
-            display: none;
-        }
-
-        /* Rapikan border tabel saat print */
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid black !important; padding: 5px; color: black !important; }
-    }
-</style>
-    
+<?= $this->section('content') ?> 
 
 <div class="content-header">
     <div class="container-fluid">
@@ -89,9 +47,9 @@
                             <a href="<?= base_url('materials/export/excel') ?>" target="_blank" class="btn btn-secondary btn-sm">
                                 <i class="bi bi-file-earmark-excel"></i> Excel
                             </a>
-                            <button type="button" onclick="window.print()" class="btn btn-secondary btn-sm">
-                                <i class="bi bi-printer"></i> Print
-                            </button>
+                        <a href="<?= base_url('materials/print') ?>" target="_blank" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-printer"></i> Print
+                        </a>
                         </div>
                     </div>
 

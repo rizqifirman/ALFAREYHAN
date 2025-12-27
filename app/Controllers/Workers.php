@@ -115,4 +115,14 @@ class Workers extends BaseController
         fclose($file);
         exit;
     }
+    // --- FITUR PRINT TUKANG ---
+    public function print()
+    {
+        $model = new WorkerModel();
+        $data = [
+            'title'   => 'Daftar Tukang',
+            'workers' => $model->findAll()
+        ];
+        return view('workers/print', $data);
+    }
 }

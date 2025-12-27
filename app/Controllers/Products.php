@@ -291,5 +291,14 @@ class Products extends BaseController
 
         return redirect()->to('/products')->with('error', 'Gagal upload file CSV.');
     }
-
+// --- FITUR PRINT PRODUK ---
+    public function print()
+    {
+        $model = new ProductModel();
+        $data = [
+            'title'    => 'Laporan Stok Produk',
+            'products' => $model->findAll()
+        ];
+        return view('products/print', $data);
+    }
 }

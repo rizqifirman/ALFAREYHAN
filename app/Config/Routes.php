@@ -42,3 +42,13 @@ $routes->post('/ongkos/update', 'Ongkos::update', ['filter' => 'auth']);
 $routes->get('/ongkos/delete/(:num)', 'Ongkos::delete/$1', ['filter' => 'auth']);
 $routes->get('/ongkos/export/excel', 'Ongkos::exportExcel', ['filter' => 'auth']);
 $routes->get('/ongkos/print', 'Ongkos::print', ['filter' => 'auth']);
+// --- Routes Fitur Print Halaman Terpisah ---
+$routes->get('/products/print', 'Products::print', ['filter' => 'auth']);
+$routes->get('/materials/print', 'Materials::print', ['filter' => 'auth']);
+$routes->get('/workers/print', 'Workers::print', ['filter' => 'auth']);
+$routes->get('/garapan', 'Garapan::index', ['filter' => 'auth']);
+$routes->post('/garapan/store', 'Garapan::store', ['filter' => 'auth']);
+$routes->get('/garapan/print/(:num)', 'Garapan::printSpk/$1', ['filter' => 'auth']);
+$routes->post('/garapan/terima/(:num)', 'Garapan::terima/$1', ['filter' => 'auth']);
+
+$routes->get('/garapan/print-gaji/(:num)', 'Garapan::printGaji/$1', ['filter' => 'auth']);

@@ -1,20 +1,7 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
-<style>
-    @media print {
-        /* Sembunyikan Sidebar, Tombol, Form saat nge-print */
-        .app-sidebar, .app-header, .btn, .breadcrumb, form, .pagination { display: none !important; }
-        .content-wrapper { margin: 0 !important; padding: 0 !important; }
-        
-        /* PERBAIKAN DISINI: Gunakan 'box-shadow' */
-        .card { border: none !important; box-shadow: none !important; }
-        
-        /* Tampilkan tabel secara penuh */
-        table { width: 100% !important; border-collapse: collapse; }
-        th, td { border: 1px solid #000 !important; padding: 5px; }
-    }
-</style>
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -75,9 +62,9 @@
                             <a href="<?= base_url('products/export/excel') ?>" target="_blank" class="btn btn-secondary btn-sm">
                                 <i class="bi bi-file-earmark-excel"></i> Excel
                             </a>
-                            <button type="button" onclick="window.print()" class="btn btn-secondary btn-sm">
+                            <a href="<?= base_url('products/print') ?>" target="_blank" class="btn btn-secondary btn-sm">
                                 <i class="bi bi-printer"></i> Print
-                            </button>
+                            </a>
                         </div>
                 </div>
 

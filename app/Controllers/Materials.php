@@ -353,4 +353,14 @@ class Materials extends BaseController
 
         return redirect()->to('/materials')->with('error', 'Gagal upload file.');
     }
+// --- FITUR PRINT MATERIAL ---
+    public function print()
+    {
+        $model = new MaterialModel();
+        $data = [
+            'title'     => 'Laporan Stok Material',
+            'materials' => $model->findAll()
+        ];
+        return view('materials/print', $data);
+    }
 }

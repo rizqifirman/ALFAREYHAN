@@ -118,12 +118,11 @@
                                 <i class="nav-icon bi bi-circle-fill"></i> <p>Data Produk & Stok</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Manajemen Garapan</p>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('garapan') ?>" class="nav-link <?= (uri_string() == 'garapan') ? 'active' : '' ?>">
+                            <i class="nav-icon bi bi-scissors"></i> <p>Manajemen Garapan</p>
+                        </a>
+                    </li>
                     </ul>
                 </li>
 
