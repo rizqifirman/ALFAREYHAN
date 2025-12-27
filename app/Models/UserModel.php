@@ -8,27 +8,15 @@ class UserModel extends Model
 {
     protected $table            = 'users';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array'; // Bisa ganti 'object' jika suka
-    protected $useSoftDeletes   = false;
     
-    // Kolom yang boleh diisi manual
-    protected $allowedFields    = ['username', 'password', 'nama_lengkap', 'role'];
+    protected $useAutoIncrement = true;
+    protected $returnType       = 'array';
+    
+    // BAGIAN PENTING:
+    // Kita tambahkan 'nama_lengkap' dan 'status' agar bisa diedit oleh Owner
+    protected $allowedFields    = ['username', 'password', 'nama_lengkap', 'role', 'status'];
 
-    // Aktifkan timestamp agar created_at & updated_at terisi otomatis
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-
-    // Callback untuk otomatis hash password saat insert/update
-    protected $beforeInsert = ['hashPassword'];
-    protected $beforeUpdate = ['hashPassword'];
-
-    protected function hashPassword(array $data)
-    {
-        if (isset($data['data']['password'])) {
-            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        }
-        return $data;
-    }
+    // Aktifkan ini agar tahu kapan akun dibuat/diedit (Opsional, tapi bagus)
+    protected $useTimestamps = false;
+    // Ubah ke 'true' jika tabel database Anda punya kolom 'created_at' & 'updated_at'
 }

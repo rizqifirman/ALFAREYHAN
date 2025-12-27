@@ -32,11 +32,11 @@
 
     <div style="margin-bottom: 5px; font-weight:bold; text-decoration: underline;">Rincian Pekerjaan:</div>
 
-    <?php 
-    $grandTotal = 0; 
+    <?php
+    $grandTotal = 0;
     if(!empty($products)):
-        foreach($products as $p): 
-            $qtyBayar = $p['qty_hasil']; 
+        foreach($products as $p):
+            $qtyBayar = $p['qty_hasil'];
             $subtotal = $qtyBayar * $p['ongkos_satuan'];
             $grandTotal += $subtotal;
     ?>
@@ -61,7 +61,7 @@
         <span>Rp <?= number_format($grandTotal, 0, ',', '.') ?></span>
     </div>
 
-<?php 
+<?php
         // Ambil data, jika kosong anggap 0
         $valBonus = $garapan['bonus'] ?? 0;
         $valPotongan = $garapan['potongan'] ?? 0;

@@ -52,3 +52,13 @@ $routes->get('/garapan/print/(:num)', 'Garapan::printSpk/$1', ['filter' => 'auth
 $routes->post('/garapan/terima/(:num)', 'Garapan::terima/$1', ['filter' => 'auth']);
 
 $routes->get('/garapan/print-gaji/(:num)', 'Garapan::printGaji/$1', ['filter' => 'auth']);
+// Tambahkan baris ini agar link hapus berfungsi:
+$routes->get('garapan/delete/(:num)', 'Garapan::delete/$1');
+// Route Manajemen User (Akun)
+$routes->get('users', 'User::index');
+$routes->post('users/store', 'User::store');
+$routes->post('users/update/(:num)', 'User::update/$1');
+$routes->get('users/delete/(:num)', 'User::delete/$1');
+// Tambahkan Route untuk Material & Produk
+$routes->get('material', 'Materials::index'); // Pakai 's'
+$routes->get('product', 'Products::index');   // Pakai 's'

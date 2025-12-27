@@ -92,7 +92,7 @@
                     <ul class="mb-0 ps-3" style="font-size:13px; color:#555;">
                         <?php foreach($g['detail_materials'] as $m): ?>
                             <li>
-                                <?= $m['nama_material'] ?> 
+                                <?= $m['nama_material'] ?>
                                 <span class="text-muted" style="font-size:11px;">(<?= $m['warna'] ?>)</span>
                                 : <b><?= $m['qty'] ?> <?= $m['satuan'] ?></b>
                             </li>
@@ -114,10 +114,10 @@
                     <ul class="mb-0 ps-3" style="font-size:13px; color:#000;">
                         <?php foreach($g['detail_products'] as $p): ?>
                             <li>
-                                <?= $p['nama_barang'] ?> 
+                                <?= $p['nama_barang'] ?>
                                 <span class="badge bg-white text-dark border border-secondary" style="font-size:10px; padding: 1px 5px;">
                                     <?= $p['size'] ?>
-                                </span> 
+                                </span>
                                 : <b><?= $p['qty_target'] ?> Pcs</b>
                             </li>
                         <?php endforeach; ?>
@@ -161,30 +161,37 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach($garapan_riwayat as $r): ?>
-                                    <tr>
-                                        <td><?= $r['no_faktur'] ?></td>
-                                        <td><?= $r['nama_tukang'] ?></td>
-                                        <td>
-                                            <ul class="detail-list">
-                                                <?php foreach($r['detail_products'] as $p): ?>
-                                                    <li>
-                                                        <?= $p['nama_barang'] ?> (<?= $p['size'] ?>)<br>
-                                                        Target: <?= $p['qty_target'] ?> | 
-                                                        <span class="text-success fw-bold">Ok: <?= $p['qty_hasil'] ?></span>
-                                                        <?php if($p['qty_retur'] > 0): ?>
-                                                            | <span class="text-danger fw-bold">Retur: <?= $p['qty_retur'] ?></span>
-                                                        <?php endif; ?>
-                                                    </li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                        </td>
-                                        <td><?= $r['tanggal_selesai'] ?></td>
-                                        <td>
-                                            <a href="<?= base_url('garapan/print-gaji/'.$r['id']) ?>" target="_blank" class="btn btn-sm btn-primary mb-1 w-100" title="Cetak Slip Gaji"><i class="bi bi-cash-stack"></i> Cetak Upah</a>
-                                            <a href="<?= base_url('garapan/print/'.$r['id']) ?>" target="_blank" class="btn btn-sm btn-secondary w-100" title="Cetak SPK"><i class="bi bi-printer"></i> SPK</a>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach; ?>
+<tr>
+    <td><?= $r['no_faktur'] ?></td>
+    <td><?= $r['nama_tukang'] ?></td>
+    <td>
+        <ul class="detail-list">
+            <?php foreach($r['detail_products'] as $p): ?>
+                <li>
+                    <?= $p['nama_barang'] ?> (<?= $p['size'] ?>) 
+                    Target: <?= $p['qty_target'] ?> | 
+                    <span class="text-success fw-bold">Ok: <?= $p['qty_hasil'] ?></span>
+                    <?php if($p['qty_retur'] > 0): ?> | <span class="text-danger fw-bold">Retur: <?= $p['qty_retur'] ?></span><?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </td>
+    <td><?= $r['tanggal_selesai'] ?></td>
+    <td>
+        <a href="<?= base_url('garapan/print-gaji/'.$r['id']) ?>" target="_blank" class="btn btn-sm btn-primary mb-1 w-100" title="Cetak Slip Gaji"><i class="bi bi-cash-stack"></i> Upah</a>
+        <a href="<?= base_url('garapan/print/'.$r['id']) ?>" target="_blank" class="btn btn-sm btn-secondary w-100 mb-1" title="Cetak SPK"><i class="bi bi-printer"></i> SPK</a>
+        
+        <?php if(session()->get('role') == 'owner'): ?>
+            <a href="<?= base_url('garapan/delete/'.$r['id']) ?>"
+               class="btn btn-sm btn-danger w-100"
+               onclick="return confirm('PERINGATAN OWNER:\nData ini akan dihapus permanen.\nApakah Anda yakin?')">
+               <i class="bi bi-trash"></i> Hapus
+            </a>
+        <?php endif; ?>
+
+    </td>
+</tr>
+<?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

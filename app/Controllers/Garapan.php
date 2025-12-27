@@ -134,7 +134,7 @@ class Garapan extends BaseController
     {
 $garapanModel = new GarapanModel();
         
-        $aksi = $this->request->getPost('aksi'); 
+        $aksi = $this->request->getPost('aksi');
         $qtyReturInput = $this->request->getPost('qty_retur');
         
         // --- [PENTING] AMBIL INPUT BONUS & BERSIHKAN TITIK (.) ---
@@ -202,7 +202,7 @@ $garapanModel->update($id, [
             'tanggal_selesai' => date('Y-m-d H:i:s')
         ]);
 
-        $this->db->transComplete(); 
+        $this->db->transComplete();
 
         if ($this->db->transStatus() === FALSE) {
             // Jika masuk sini, berarti database error (kemungkinan kolom qty_retur hilang)
@@ -257,5 +257,36 @@ $garapanModel->update($id, [
             ->where('garapan_id', $id)->get()->getResultArray();
 
         return view('garapan/print_gaji', ['garapan' => $garapan, 'products' => $products]);
+ 
+    }
+    // --- HAPUS GARAPAN (KHUSUS OWNER) ---
+    public function delete($id)
+    {
+        // 1. CEK KEAMANAN: Hanya Owner yang boleh
+        // Pastikan saat login session role diset sebagai 'Owner'
+        if(session()->get('role') != 'owner') {
+            return redirect()->to('/garapan')->with('error', 'Akses Ditolak! Hanya Owner yang bisa menghapus riwayat.');
+        }
+
+        $garapanModel = new GarapanModel();
+        
+        // 2. HAPUS DATA (Termasuk detailnya)
+        // Kita gunakan Transaction agar aman
+        $this->db->transStart();
+        
+        // Hapus Detail Material & Produk dulu (Manual delete agar bersih)
+        $this->db->table('garapan_materials')->where('garapan_id', $id)->delete();
+        $this->db->table('garapan_products')->where('garapan_id', $id)->delete();
+        
+        // Hapus Header Garapan
+        $garapanModel->delete($id);
+
+        $this->db->transComplete();
+
+        if ($this->db->transStatus() === FALSE) {
+            return redirect()->to('/garapan')->with('error', 'Gagal menghapus data.');
+        }
+
+        return redirect()->to('/garapan')->with('success', 'Data Riwayat berhasil dihapus permanen.');
     }
 }

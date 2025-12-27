@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -36,7 +37,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item d-flex align-items-center me-3">
                         <span class="fw-bold">
-                            Halo, <?= session()->get('nama') ?> 
+                            Halo, <?= session()->get('nama') ?>
                             (<?= session()->get('role') ?>)
                         </span>
                     </li>
@@ -83,7 +84,16 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
+<?php if(strcasecmp(session()->get('role'), 'owner') == 0): ?>
+    <li class="nav-header">OWNER AREA</li>
+    
+    <li class="nav-item">
+        <a href="<?= base_url('users') ?>" class="nav-link <?= (uri_string() == 'users') ? 'active' : '' ?>">
+            <i class="nav-icon bi bi-person-badge-fill text-warning"></i>
+            <p>Manajemen Akun</p>
+        </a>
+    </li>
+<?php endif; ?>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link active bg-secondary">
                         <i class="nav-icon bi bi-collection-fill"></i>
@@ -107,17 +117,19 @@
                             <i class="nav-icon bi bi-cash-coin"></i> <p>Ongkos Tukang</p>
                         </a>
                     </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('materials') ?>" class="nav-link <?= (str_contains(uri_string(), 'materials')) ? 'active' : '' ?>">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Data Material</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('products') ?>" class="nav-link <?= (str_contains(uri_string(), 'products')) ? 'active' : '' ?>">
-                                <i class="nav-icon bi bi-circle-fill"></i> <p>Data Produk & Stok</p>
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a href="<?= base_url('material') ?>" class="nav-link <?= (uri_string() == 'material') ? 'active' : '' ?>">
+                            <i class="nav-icon bi bi-box-seam"></i>
+                            <p>Data Material</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('product') ?>" class="nav-link <?= (uri_string() == 'product') ? 'active' : '' ?>">
+                            <i class="nav-icon bi bi-tags-fill"></i>
+                            <p>Data Produk & Stok</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= base_url('garapan') ?>" class="nav-link <?= (uri_string() == 'garapan') ? 'active' : '' ?>">
                             <i class="nav-icon bi bi-scissors"></i> <p>Manajemen Garapan</p>
@@ -154,7 +166,7 @@
             <strong>Copyright &copy; <?= date('Y') ?>.</strong>
         </footer>
 
-    </div> 
+    </div>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
@@ -186,5 +198,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
